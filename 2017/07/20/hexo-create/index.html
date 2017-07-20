@@ -1,0 +1,92 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>搭建 Hexo 博客并部署到 GitHub | Hexo</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/normalize/6.0.0/normalize.min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/pure-min.css"><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/pure/0.6.2/grids-responsive-min.css"><link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">搭建 Hexo 博客并部署到 GitHub</h1><a id="logo" href="/.">Hexo</a><p class="description">又一个博客的诞生了</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> 首页</i></a><a href="/archives/"><i class="fa fa-archive"> 归档</i></a><a href="/about/"><i class="fa fa-user"> 关于</i></a><a href="/atom.xml"><i class="fa fa-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">搭建 Hexo 博客并部署到 GitHub</h1><div class="post-meta">Jul 20, 2017<script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><span id="busuanzi_container_page_pv"> | <span id="busuanzi_value_page_pv"></span><span> 阅读</span></span></div><div class="post-content"><p>在windows 上搭建Hexo博客并且部署到GitHub上面。在搭建的时候遇到不少问题，如Git的ssh问题，网站编译上传问题等，这里就写一份我安装成功后的步骤说明，当然很多方法都是来源于百度的，在这里谢谢网络世界里面热心贡献心得方法的大神们。</p>
+<p>—— 方法不一定适应每个人每台机器，如不能成功，请问度娘。</p>
+<h2 id="1-准备工作"><a href="#1-准备工作" class="headerlink" title="1. 准备工作"></a>1. 准备工作</h2><ul>
+<li>系统平台 Windows （其他平台大同小异）</li>
+<li>安装软件 Git  <a href="https://git-scm.com/downloads" target="_blank" rel="external">点击下载</a> </li>
+<li>安装软件 Node.js <a href="http://nodejs.cn/download/" target="_blank" rel="external">点击下载</a> </li>
+</ul>
+<p>安装完成之后鼠标在桌面任意点击右键在下拉菜单中 出现<br>[Git GUI Here]<br>[Git Bash Here]<br>这两个菜单 选择 [Git Bash Here] 点击打开 </p>
+<h2 id="2-安装-Hexo"><a href="#2-安装-Hexo" class="headerlink" title="2. 安装 Hexo"></a>2. 安装 Hexo</h2><h3 id="1-安装hexo之前先安装一个-CNPM-的淘宝-NPM-镜像"><a href="#1-安装hexo之前先安装一个-CNPM-的淘宝-NPM-镜像" class="headerlink" title="(1)  安装hexo之前先安装一个 CNPM 的淘宝 NPM 镜像"></a>(1)  安装hexo之前先安装一个 <a href="http://npm.taobao.org/" target="_blank" rel="external">CNPM</a> 的淘宝 NPM 镜像</h3><p>输入命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g cnpm --registry=https://registry.npm.taobao.org</div></pre></td></tr></table></figure></p>
+<p>在打开的 [Git Bash] 中输入以上命令 然后等待安装完成，如果不想用 CNPM 的话直接跳过这个步骤 （以下介绍都会用cnmp进行安装依赖）</p>
+<h3 id="2-安装Hexo"><a href="#2-安装Hexo" class="headerlink" title="(2)  安装Hexo"></a>(2)  安装Hexo</h3><p>输入命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cnpm install hexo-cli -g</div></pre></td></tr></table></figure></p>
+<p>注：-g 指的是全局安装 然后可以执行 hexo 的内置命令<br>安装完成之后 关闭 [Git Bash]</p>
+<h3 id="3-创建本地文件夹（如-HexoBlog）"><a href="#3-创建本地文件夹（如-HexoBlog）" class="headerlink" title="(3)  创建本地文件夹（如 HexoBlog）"></a>(3)  创建本地文件夹（如 HexoBlog）</h3><ul>
+<li>在你喜爱的文件夹下（如 D:\Hexo\hexoBlog）</li>
+<li>在创建的文件夹中点击右键打开 [Git Bash]</li>
+</ul>
+<p>输入命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo init</div></pre></td></tr></table></figure></p>
+<p>Hexo 即会自动在目标文件夹建立网站所需要的所有文件。</p>
+<h3 id="4-安装依赖包"><a href="#4-安装依赖包" class="headerlink" title="(4)  安装依赖包"></a>(4)  安装依赖包</h3><p>等待上一步完成之后。</p>
+<p>输入命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cnpm install</div></pre></td></tr></table></figure></p>
+<p>注：这些依赖是必须下载的，第一次下载可能会等待很长一段时间。</p>
+<h3 id="5-运行博客"><a href="#5-运行博客" class="headerlink" title="(5)  运行博客"></a>(5)  运行博客</h3><p>等待上一步完成之后。</p>
+<p>输入命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure></p>
+<ol>
+<li>运行成功后 [Git Bash]里面会有一个监听端口</li>
+<li>一般默认为 <a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a></li>
+<li>在浏览器打开这个窗口就能看到最原始的博客界面</li>
+</ol>
+<p>注：关闭 [Git Bash] 就会终止博客程序运行</p>
+<h3 id="6-安装一个主题"><a href="#6-安装一个主题" class="headerlink" title="(6)  安装一个主题"></a>(6)  安装一个主题</h3><p>这里提供Hexo的一些相关网站<br>Hexo 中文官网 <a href="https://hexo.io/zh-cn/" target="_blank" rel="external">https://hexo.io/zh-cn/</a><br>Hexo 主题 <a href="https://hexo.io/themes/" target="_blank" rel="external">https://hexo.io/themes/</a></p>
+<p>选择一款主题，按照主题的内置文档进行修改配置安装这里就不写步骤了。</p>
+<h2 id="3-创建GitHub"><a href="#3-创建GitHub" class="headerlink" title="3 创建GitHub"></a>3 创建GitHub</h2><h3 id="1-注册账号（省略…）"><a href="#1-注册账号（省略…）" class="headerlink" title="(1) 注册账号（省略…）"></a>(1) 注册账号（省略…）</h3><h3 id="2-创建Repository-仓库"><a href="#2-创建Repository-仓库" class="headerlink" title="(2) 创建Repository (仓库)"></a>(2) 创建Repository (仓库)</h3><ol>
+<li>创建的时候注意 Repository 的名字。</li>
+<li>比如我的 Github 账号是 JooZh，</li>
+<li>那么我应该创建的 Repository 的名字是：JooZh.github.io。</li>
+</ol>
+<p>注：仓库名的必须是这种格式否则导致出错</p>
+<h3 id="3-修改-Hexo-配置文件"><a href="#3-修改-Hexo-配置文件" class="headerlink" title="(3) 修改 Hexo 配置文件"></a>(3) 修改 Hexo 配置文件</h3><ol>
+<li>在刚刚创建的仓库中 点击 绿色的 Clone or download 按钮</li>
+<li>复制以下路径 如： git@github.com:JooZh/JooZh.github.io.git</li>
+<li>在 博客根目录下找到 _config.yml 文件 用编辑器打开这个文件</li>
+<li>修改文件最下面的deploy。其中的repo就改成你刚刚复制的地址。</li>
+<li>保存这个文件。</li>
+</ol>
+<p>代码如下： 注deploy 后面要有一个空格<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy: </div><div class="line">  <span class="built_in">type</span>: git</div><div class="line">  repo: git@github.com:JooZh/JooZh.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure></p>
+<h3 id="4-生成SSH-keys"><a href="#4-生成SSH-keys" class="headerlink" title="(4) 生成SSH keys"></a>(4) 生成SSH keys</h3><p>首先：检查是否存在 SSH keys</p>
+<p>输入命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ls -al ~/.ssh</div></pre></td></tr></table></figure></p>
+<p>如果出现以下类似代码说明已经生成过</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">drwxr-xr-x 1 admin 197609    0 7月  20 09:28 ./</div><div class="line">drwxr-xr-x 1 admin 197609    0 7月  20 09:28 ../</div><div class="line">-rw-r--r-- 1 admin 197609 1679 7月  20 09:28 github_rsa</div><div class="line">-rw-r--r-- 1 admin 197609  390 7月  20 09:28 github_rsa.pub</div><div class="line">-rw-r--r-- 1 admin 197609 1675 7月  19 11:11 id_rsa</div><div class="line">-rw-r--r-- 1 admin 197609  398 7月  19 11:11 id_rsa.pub</div><div class="line">-rw-r--r-- 1 admin 197609  407 7月  19 11:16 known_hosts</div></pre></td></tr></table></figure>
+<p>进入个人的用户文件夹中的.ssh 文件夹 ( 路径大概是这个样子  C:\Users\admin\.ssh 中间的 admin 就是你的用户名 ) 删除目录中的所有内容（文件名为 id_rsa / id_rsa.pub / known_hosts）</p>
+<p>删除完成后</p>
+<p>输入命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-keygen -t rsa -C <span class="string">"youremail@163.com"</span></div></pre></td></tr></table></figure></p>
+<p>如果提示要选择 yes / no 的时候请直接按三次回车即可<br>生成如下的类似内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">he key fingerprint is:</div><div class="line">SHA256:lJIMFWjQsEUTr1kmbWF62SMVuS8+KA5p055QnIb7o50 youremail@163.com</div><div class="line">The key<span class="string">'s randomart image is:</span></div><div class="line">+---[RSA 2048]----+</div><div class="line">|  o=*+=.oo       |</div><div class="line">|   o+O *..       |</div><div class="line">|  ..o &amp; =.       |</div><div class="line">|   o X +..       |</div><div class="line">|  . B   S.       |</div><div class="line">|   *    . .      |</div><div class="line">|  B .  o .       |</div><div class="line">| . Boo. o        |</div><div class="line">|  .oEo   .       |</div><div class="line">+----[SHA256]-----+</div></pre></td></tr></table></figure></p>
+<p>完成上一步之后</p>
+<p>输入命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-agent -s</div></pre></td></tr></table></figure></p>
+<p>完成上一步之后</p>
+<p>输入命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-add ~/.ssh/id_rsa</div></pre></td></tr></table></figure></p>
+<p>如果出现如下报错内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Could not open a connection to your autentication agent</div></pre></td></tr></table></figure></p>
+<p>输入命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">eval</span> `ssh-agent -s`</div></pre></td></tr></table></figure></p>
+<p>输入命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh-add</div></pre></td></tr></table></figure></p>
+<p>到这里，添加SSH key到你的Github账户了。</p>
+<p>输入命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ clip &lt; ~/.ssh/id_rsa.pub</div></pre></td></tr></table></figure></p>
+<h3 id="4-设置-GitHub-中的-SSH-keys"><a href="#4-设置-GitHub-中的-SSH-keys" class="headerlink" title="(4) 设置 GitHub 中的 SSH keys"></a>(4) 设置 GitHub 中的 SSH keys</h3><p>设置过程</p>
+<ol>
+<li>登陆网页版的 GitHub </li>
+<li>在右上角的个人头像点击下拉菜单 选择 Settings 进入设置页面</li>
+<li>点击左侧的 SSH and GPG keys 按钮</li>
+<li>点击右上角的 new SSH key 按钮 新建一个 SSH</li>
+<li>Title 名称任意 如（myHexoBlog）</li>
+<li>key 设置如下</li>
+</ol>
+<p>用编辑器 打开 id_rsa.pub 这个文件</p>
+<p>文件在  C:\Users\admin\.ssh 目录中，中间的 admin 就是你的用户名</p>
+<p>然后就会看的如下代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDSkHFGkJ5DrPxg5sEjU6M9pVEvJf4j</div><div class="line">n7NoNLOH+1qhgxwgX4PsVufgl8Y+M8YWsAkgQc.........h0nCAGZ4ImJQBJcUsiKoL</div><div class="line">hZyn7uvWmzWN8x7cpdl0/4tfsK5vDu7Nv5xYUiXnuvdcL6S0L9KgQTRQYyy0ApDix6bf</div><div class="line">LcaL8+ubF7HKmoP8719qkPA7oU0mJjjr3p1hlUBmWhCL youremail@163.com</div></pre></td></tr></table></figure></p>
+<p>全部粘贴到 key 输入框中。</p>
+<p>然后点击 Add SSH key 就完成了 SSH key 的添加</p>
+<p>测试以下是否链接成功 </p>
+<p>输入命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ ssh -T git@github.com</div></pre></td></tr></table></figure></p>
+<p>会提示要你输入 yes/no 当然是输入yes </p>
+<p>然后z最后一行出现如下内容即为成功</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Hi username You<span class="string">'ve successfull anthenticated. but GitHub does not provide shell access....</span></div></pre></td></tr></table></figure>
+<p>关闭 [Git Bash] </p>
+<h2 id="4-上传站点到-GitHub"><a href="#4-上传站点到-GitHub" class="headerlink" title="4 上传站点到 GitHub"></a>4 上传站点到 GitHub</h2><h3 id="1-生成-public-文件目录"><a href="#1-生成-public-文件目录" class="headerlink" title="(1) 生成 public 文件目录"></a>(1) 生成 public 文件目录</h3><p>因为在GitHub 中我们是将本地的文件进行一个编译打包后生成的静态文件上传上去，所以需要执行一个编译命令。</p>
+<p>回到刚才的 博客目录中 在根目录下 打开 [Git Bash]</p>
+<p>输入命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure></p>
+<p>然后就看到出现了一个 public 文件夹</p>
+<p>输入命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure></p>
+<p>等待执行完成后整个博客就已经部署完毕 </p>
+<p>输入 <a href="http://yourGitName.github.io/" target="_blank" rel="external">http://yourGitName.github.io/</a> 即可访问你的博客</p>
+<p>最后：每次修改后都要执行一次 hexo generate 命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure></p>
+<p>然后 再执行 hexo deploy 命令 保证已经编译过最新的文件。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure></p>
+</div><script type="text/javascript" src="/js/share.js?v=0.0.0" async></script><a data-url="http://yoursite.com/2017/07/20/hexo-create/" data-id="cj5c117d70002ekmyi3e0nqzl" class="article-share-link">分享</a><div class="tags"><a href="/tags/GitHub/">GitHub</a><a href="/tags/SSH-Key/">SSH Key</a><a href="/tags/Hexo/">Hexo</a></div><div class="post-nav"><a href="/2017/07/08/hello-world/" class="next">每个人都有一个 Hello World</a></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> 分类</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> 标签</i></div><div class="tagcloud"><a href="/tags/GitHub/" style="font-size: 15px;">GitHub</a> <a href="/tags/SSH-Key/" style="font-size: 15px;">SSH Key</a> <a href="/tags/Hexo/" style="font-size: 15px;">Hexo</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> 最近文章</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2017/07/20/hexo-create/">搭建 Hexo 博客并部署到 GitHub</a></li><li class="post-list-item"><a class="post-list-link" href="/2017/07/08/hello-world/">每个人都有一个 Hello World</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> 友情链接</i></div><ul></ul><a href="http://www.example1.com/" title="site-name1" target="_blank">site-name1</a><ul></ul><a href="http://www.example2.com/" title="site-name2" target="_blank">site-name2</a><ul></ul><a href="http://www.example3.com/" title="site-name3" target="_blank">site-name3</a></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2017 <a href="/." rel="nofollow">Hexo.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a id="rocket" href="#top" class="show"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//cdn.bootcss.com/fancybox/3.0.47/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
